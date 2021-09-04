@@ -200,15 +200,21 @@ employeedetail-component.component.ts
 
 ```js
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   templateUrl: './employeedetail-component.component.html',
   styleUrls: ['./employeedetail-component.component.css']
 })
 export class EmployeedetailComponentComponent implements OnInit {
-  constructor() {}
+  pageTitle: string = 'Employee Detail';
 
-  ngOnInit() {}
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit() {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.pageTitle += `: ${id}`;
+  }
 }
 ```
 
@@ -226,21 +232,19 @@ welcome-component.component.ts
 
 ```js
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  templateUrl: './employeedetail-component.component.html',
-  styleUrls: ['./employeedetail-component.component.css']
+  selector: 'app-welcome-component',
+  templateUrl: './welcome-component.component.html',
+  styleUrls: ['./welcome-component.component.css']
 })
-export class EmployeedetailComponentComponent implements OnInit {
-  pageTitle: string = 'Employee Detail';
+export class WelcomeComponentComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) {}
+  constructor() { }
 
   ngOnInit() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.pageTitle += `: ${id}`;
   }
+
 }
 ```
 
